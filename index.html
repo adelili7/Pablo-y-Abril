@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación de Boda - Abril & Pablo</title>
+
+<!-- Tipografía romántica estilo cuento de hadas -->
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Princess+Sofia&display=swap" rel="stylesheet">
+
+<style>
+body { margin:0; font-family:'Princess Sofia', cursive; background:#f0f8ff; color:#333; overflow-x:hidden; }
+
+/* Pantallas */
+.pantalla { display:none; width:100%; min-height:100vh; justify-content:center; align-items:center; flex-direction:column; padding:20px; background-size:cover; background-position:center; position:relative; }
+
+/* ===== Portada ===== */
+#pantalla1 { display:flex; background:url('imagenes/fondo_floral2.jpg') no-repeat center center fixed; background-size:cover; }
+#pantalla1::before { content:""; position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.5); }
+
+#anillo { width:200px; height:200px; cursor:pointer; position:relative; perspective:1000px; z-index:1; }
+#anillo svg { width:100%; height:100%; transform-style:preserve-3d; animation: girarAnillo 8s linear infinite; filter: drop-shadow(0 0 30px #00f) drop-shadow(0 0 40px #fff); }
+
+@keyframes girarAnillo { 0%{transform:rotateY(0deg);} 100%{transform:rotateY(360deg);} }
+
+#acepto { margin-top:20px; font-size:3em; font-family:'Great Vibes', cursive; color:#219AB6; text-shadow:0 0 10px #fff,0 0 20px #219AB6,0 0 30px #00f; animation: brilloDestello 1.5s infinite alternate, bounce 1s ease forwards; text-align:center; }
+
+@keyframes brilloDestello { 0%{text-shadow:0 0 10px #fff,0 0 20px #219AB6,0 0 30px #00f;} 50%{text-shadow:0 0 20px #fff,0 0 40px #00f,0 0 60px #219AB6;} 100%{text-shadow:0 0 10px #fff,0 0 20px #219AB6,0 0 30px #00f;} }
+@keyframes bounce { 0%{transform:scale(0.7);} 50%{transform:scale(1.2);} 100%{transform:scale(1);} }
+
+/* Frases y nombres */
+.frase { font-family:'Great Vibes', cursive; font-size:2em; color:#219AB6; text-align:center; text-shadow:0 0 10px #fff,0 0 20px #219AB6,0 0 30px #00f; margin:20px 0; }
+
+/* Collage */
+.collage { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); grid-auto-rows:150px; gap:10px; margin:20px auto; justify-items:center; align-items:center; }
+.collage img { width:100%; height:100%; object-fit:cover; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.2); transition: transform 0.5s, box-shadow 0.5s; }
+.collage img:hover { transform:scale(1.1); box-shadow:0 0 25px rgba(33,154,182,0.5); }
+
+/* Iconos animados 2D */
+.icono { width:40px; height:40px; }
+
+/* Formularios */
+form { max-width:600px; margin:auto; display:flex; flex-direction:column; gap:10px; }
+input, textarea, select { padding:12px; border-radius:12px; border:1px solid #ccc; font-family:'Princess Sofia', cursive; }
+button { padding:12px 25px; border-radius:50px; background:#219AB6; color:white; border:none; cursor:pointer; font-family:'Princess Sofia', cursive; transition:0.3s; }
+button:hover { background:#0d7a99; }
+
+/* WhatsApp */
+.boton-whatsapp { display:inline-block; background-color:#25D366; color:white; padding:12px 25px; border-radius:50px; text-decoration:none; margin:15px; font-weight:bold; transition: transform 0.3s, box-shadow 0.3s; }
+.boton-whatsapp:hover { transform:scale(1.05); box-shadow:0 0 15px rgba(0,0,0,0.3); }
+
+/* Responsive */
+@media(max-width:600px){ #anillo{width:150px;height:150px;} .collage{grid-auto-rows:120px;} }
+</style>
+</head>
+<body>
+
+<!-- ===== Pantalla 1: Portada con marcha nupcial ===== -->
+<div id="pantalla1">
+  <div id="anillo" title="Haz clic en el anillo para continuar">
+    <svg viewBox="0 0 150 150">
+      <circle cx="75" cy="75" r="60" stroke="silver" stroke-width="8" fill="none"/>
+      <polygon points="75,20 85,60 75,70 65,60" fill="deepskyblue"/>
+    </svg>
+  </div>
+  <div id="acepto">¡Sí acepto!</div>
+  <audio id="marcha" autoplay>
+    <source src="musica/marcha_nupcial.mp3" type="audio/mpeg">
+  </audio>
+</div>
+
+<!-- ===== Pantalla 2: Cantares 8:6 ===== -->
+<div id="pantalla2" class="pantalla" style="background:url('imagenes/fondo_floral1.jpg');">
+  <div class="frase">Cantares 8:6</div>
+  <img src="imagenes/corazon3d.png" alt="Corazón 3D" style="width:200px; cursor:pointer;" id="corazon3d">
+</div>
+
+<!-- ===== Pantalla 3: Con amor eterno, nombres y foto1 ===== -->
+<div id="pantalla3" class="pantalla" style="background:url('imagenes/fondo_floral1.jpg');">
+  <div class="frase">Con amor eterno</div>
+  <h1 style="text-align:center; font-size:3em; color:#219AB6; text-shadow:0 0 10px #fff,0 0 20px #219AB6;">Abril & Pablo</h1>
+  <img src="imagenes/foto1.jpg" alt="Foto1" style="width:60%; border-radius:15px; display:block; margin:auto;">
+</div>
+
+<!-- ===== Pantalla 4: Detalles de la boda ===== -->
+<div id="pantalla4" class="pantalla" style="background:url('imagenes/fondo_floral2.jpg');">
+  <audio id="eterna" controls>
+    <source src="musica/eternamente_enamorados.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="frase">
+    Tienen el honor de invitarles a compartir la dicha de sus amados hijos<br>
+    Padres de la novia: Eva Aguilar Rendón & Pedro Pérez Hernández<br>
+    Padres del novio: Saray Hernández Santana & Pablo Tinoco Carranza (finado)<br>
+    <strong>Abril Pérez Aguilar & Pablo Eliel Tinoco Hernández</strong><br>
+    <em>“Por tanto, lo que Dios ha unido, que no lo separe el hombre.” — Mateo 19:6</em>
+  </div>
+
+  <!-- Itinerario -->
+  <div class="evento">
+    <h3><img src="iconos/iglesia2d.gif" class="icono"> Ceremonia Religiosa</h3>
+    <p>🕑 2:00 PM - Iglesia Cristiana "Palabra de Vida"</p>
+    <p>📍 <a href="https://maps.app.goo.gl/4wR8NornyG7r3Ava8" target="_blank">Ver ubicación</a></p>
+  </div>
+  <div class="evento">
+    <h3><img src="iconos/recepcion2d.gif" class="icono"> Recepción</h3>
+    <p>🕓 4:00 PM - Jardín "El Abuelo", Tlaquiltenango, Morelos</p>
+    <p>📍 <a href="https://www.google.com/maps/place/Jard%C3%ADn+El+Abuelo/" target="_blank">Ver ubicación</a></p>
+  </div>
+
+  <!-- Collage momentos -->
+  <h2>Nuestros Hermosos Momentos</h2>
+  <div class="collage">
+    <img src="imagenes/momento1.jpg" alt="Momento1">
+    <img src="imagenes/momento2.jpg" alt="Momento2">
+    <img src="imagenes/momento3.jpg" alt="Momento3">
+    <img src="imagenes/momento4.jpg" alt="Momento4">
+  </div>
+
+  <div class="frase">
+    <img src="imagenes/momento5.jpg" alt="Momento5" style="width:60%; border-radius:15px; display:block; margin:auto;">
+    <p>Tu amor es lo que he anhelado y el regalo que Dios me ha dado</p>
+  </div>
+
+  <!-- Código de vestimenta -->
+  <div id="vestimenta">
+    <img src="iconos/vestimenta2d.gif" class="icono">
+    <p>Dejemos el blanco para la novia</p>
+    <div class="colores">
+      <div class="color" style="background:#219AB6;"></div>
+      <div class="color" style="background:#00B894;"></div>
+      <div class="color" style="background:#BDC3C7;"></div>
+      <div class="color" style="background:#95A5A6;"></div>
+    </div>
+  </div>
+
+  <!-- Formularios -->
+  <section>
+    <h2>Confirma tu asistencia</h2>
+    <form id="confirmacion">
+      <input type="text" placeholder="Nombre completo" required>
+      <input type="number" placeholder="Número de personas que asistirán contigo" min="1" max="10" required>
+      <button type="submit">Confirmar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Buenos Deseos</h2>
+    <form id="deseos">
+      <textarea placeholder="Escribe tus deseos para los novios..." rows="4" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>Comparte tus fotos del evento</h2>
+    <form id="fotos">
+      <input type="file" accept="image/*" multiple required>
+      <button type="submit">Subir Fotos</button>
+    </form>
+  </section>
+
+  <!-- WhatsApp -->
+  <section style="text-align:center; margin:40px 0;">
+    <a href="https://wa.me/5217774914500" target="_blank" class="boton-whatsapp">WhatsApp Abril</a>
+    <a href="https://wa.me/5217341123645" target="_blank" class="boton-whatsapp">WhatsApp Pablo</a>
+  </section>
+
+  <section style="text-align:center; margin:40px 20px;">
+    <p style="font-size:1.5em; color:#219AB6;">¡Gracias por acompañarnos en nuestra historia de Amor!</p>
+  </section>
+</div>
+
+<script>
+// ===== Transiciones entre pantallas =====
+const anillo = document.getElementById('anillo');
+const pantalla1 = document.getElementById('pantalla1');
+const pantalla2 = document.getElementById('pantalla2');
+const pantalla3 = document.getElementById('pantalla3');
+const pantalla4 = document.getElementById('pantalla4');
+const corazon3d = document.getElementById('corazon3d');
+const marcha = document.getElementById('marcha');
+const eterna = document.getElementById('eterna');
+
+anillo.addEventListener('click', () => {
+  pantalla1.style.display = 'none';
+  pantalla2.style.display = 'flex';
+  marcha.pause();
+});
+
+corazon3d.addEventListener('click', () => {
+  pantalla2.style.display = 'none';
+  pantalla3.style.display = 'flex';
+});
+
+document.getElementById('pantalla3').addEventListener('click', () => {
+  pantalla3.style.display = 'none';
+  pantalla4.style.display = 'flex';
+  eterna.play();
+});
+</script>
+
+</body>
+</html>
